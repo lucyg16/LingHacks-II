@@ -1,0 +1,7 @@
+Psychologist assistant 
+
+Text —> sentiment analysis
+Reduce input to key words for how patient is feeling
+Reduce to descriptions of symptoms
+Use database to match up symptoms and output a diagnosed disorder
+
