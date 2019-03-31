@@ -2,14 +2,17 @@
 
 # def keywords():
 
+import re
 import string
 import nltk
 from nltk.corpus import stopwords
 nltk.download("stopwords")
 
-#getting the user paragraph
-user_paragraph = input("Hi! Welcome to Psychology Assistant. Please type a paragraph to let us know how you are feeling. Be as specific as you can!\n\n")
-print("\n\nIs this how you are feeling?:\n",user_paragraph)
+# #getting the user paragraph
+# user_paragraph = input("Hi! Welcome to Psychology Assistant. Please type a paragraph to let us know how you are feeling. Be as specific as you can!\n\n")
+# print("\n\nIs this how you are feeling?:\n",user_paragraph)
+
+user_paragraph = "me sad. lonely, need friends."
 
 #turning input into smaller strings
 all_words = user_paragraph.split()
@@ -20,12 +23,14 @@ exclude = set(string.punctuation)
 
 i=0
 while (i < len(all_words)):
-	print(i)
 	if all_words[i] in stop_words:
 		all_words.remove(all_words[i])
 	else:
 		i=i+1
 
+for word in all_words:
+	for ch in exclude:
+		word = word.replace("", ch)
 
 # text = [point[1] for point in all_words]
 # stop_words = stopwords.words("english")
