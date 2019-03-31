@@ -3550,8 +3550,8 @@ input, select, textarea {
 		}
 
 			#header .logo:hover {
-				border-color: #18bfef !important;
-				color: #18bfef !important;
+				border-color: white !important;
+				color: white !important;
 			}
 
 		@media screen and (max-width: 980px) {
