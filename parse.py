@@ -24,11 +24,8 @@ for i in (0,items-1):
 	print(i)
 	if all_words[i] in stop_words:
 		all_words.remove(all_words[i])
-		i = i
-	elif (i == items-1):
+	i=i+1
 
-	else:
-		i = i+1
 
 
 print(all_words)
