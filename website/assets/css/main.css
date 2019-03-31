@@ -3545,13 +3545,12 @@ input, select, textarea {
 			letter-spacing: 0.075em;
 			line-height: 1;
 			padding: 1rem 1.75rem;
-			text-transform: uppercase;
 			visibility: visible;
 		}
 
 			#header .logo:hover {
-				border-color: #18bfef !important;
-				color: #18bfef !important;
+				border-color: white !important;
+				color: white !important;
 			}
 
 		@media screen and (max-width: 980px) {
