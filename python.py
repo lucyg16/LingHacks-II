@@ -36,8 +36,8 @@ def calc_similarity(keywords, description):
         # print(closest_word)
         closest.append(closest_word)
         sum += max_similarity
-    
-    
+
+
     # print(repr(closest))
     return sum/len(keywords)
 
@@ -65,7 +65,7 @@ if (calc_similarity(clean(all_words), clean(splitdescript)) >= 0.5):
     before=0
     beforeindex = 2;
     index = beforeindex;
-    
+
     while i<6:
         # print("i is", i)
         bigname = line[index]
@@ -76,7 +76,7 @@ if (calc_similarity(clean(all_words), clean(splitdescript)) >= 0.5):
         bigname = bigname[:-1]
         index +=1
         j=0
-        
+
         while(j<number):
             # print("j is" , j)
             smallname = line[index]
@@ -99,7 +99,7 @@ if (calc_similarity(clean(all_words), clean(splitdescript)) >= 0.5):
             attentioncount=0
             tester = True
             value = 0
-            
+
             while ask<smallnumber:
                 #print(ask, "\n")
                 if(line[index][0:1].isnumeric()==True):
@@ -123,15 +123,15 @@ if (calc_similarity(clean(all_words), clean(splitdescript)) >= 0.5):
                 if attention == True and line[index][6:9] == "END":
                     attention = False
                     attentioncount=0
-              
-            index = index+(smallnumber-ask)    
+
+            index = index+(smallnumber-ask)
             j=j+1
             if tester == False:
-                print("***The patient does not have", smallname, "but we will keep checking for another", bigname + "***")
+                print("***The patient likely does not have", smallname, "but we will keep checking for another", bigname + "***")
             else:
-                print ("***The patient has", smallname, "***\n", "Here is the", smalldes, "\n", "This disorder is part of", bigname, "Here is the", bigdescript)
-              
+                print ("***The patient likely has", smallname, "***\n", "Here is the", smalldes, "\n", "This disorder is part of", bigname, "Here is the", bigdescript)
+
         i+=1
 
 else:
-    print("The patient most likely does not have a neurodevelopmental disorder.")
+    print("The patient likely does not have a neurodevelopmental disorder.")
