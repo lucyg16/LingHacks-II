@@ -7,6 +7,5 @@ is in the way the patient describes what he/she is feeling. Using the datbase co
 algorithm, the algorithm will be able to use data from sentiment analysis and input file to 
 output a diagnosed disorder. 
 
-
-
+Read more at our website: https://lucyg16.github.io/LingHacks-II/website/index.html
 
