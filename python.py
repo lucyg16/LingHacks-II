@@ -4,25 +4,37 @@ from nltk.stem import WordNetLemmatizer
 import string
 import numpy as np
 from nltk.corpus import stopwords
+
 with open('disorders.txt', 'r+', encoding="utf-8") as f:
     line = f.readlines()
+
+
 splitdescript = line[1].split()
+
 #finding key words
 # getting the user paragraph
 user_paragraph = input("Hi! Welcome to Psychology Assistant. Please type a paragraph to let us know how you are feeling. Be as specific as you can!\n\n")
+
+
 #turning input into smaller strings
 all_words = user_paragraph.split()
+
+
 #cleaning the input
 stop_words = stopwords.words('english')
 exclude = set(string.punctuation)
 lemma = WordNetLemmatizer()
+
 def clean(array):
    stop_free = " ".join([i for i in array if i.lower() not in stop_words])
    punc_free = ''.join(ch for ch in stop_free if ch not in exclude)
    normalized = " ".join(lemma.lemmatize(word) for word in punc_free.split())
    return normalized.split(" ")
+
 text = clean(all_words)
-print(text)
+
+#print(text)
+
 # method that returns a similarity score based on keywords from an input and description
 def calc_similarity(keywords, description):
     sum = 0
@@ -48,17 +60,19 @@ def calc_similarity(keywords, description):
 
     # print(repr(closest))
     return sum/len(keywords)
+
 if (calc_similarity(text, clean(splitdescript)) >= 0.5):
-    print("You have a",calc_similarity(text, clean(splitdescript))*100, "chance of experiencing a neurodevelopmental disorder.")
+    print("It is likely the patient is experiencing a neurodevelopmental disorder.")
+
      #go through specific disorders and prompt questions
     i = 0
     before=0
     beforeindex = 2;
     index = beforeindex;
     while i<6:
-        print("i is", i)
+        #print("i is", i)
         bigname = line[index]
-        print(bigname)
+       # print(bigname)
         number = int(line[index][-2:-1])
         index+=1
         bigdescript = line[index]
@@ -67,7 +81,7 @@ if (calc_similarity(text, clean(splitdescript)) >= 0.5):
         j=0
 
         while(j<number):
-            print("j is" , j)
+            #print("j is" , j)
 
             smallname = line[index]
             print(smallname, "\n")
@@ -76,7 +90,7 @@ if (calc_similarity(text, clean(splitdescript)) >= 0.5):
             print(smalldes, "\n")
             index+=1
             smallnumber=int(line[index])
-            print("NUMBERR ", smallnumber)
+            #print("NUMBERR ", smallnumber)
             index+=1
             if j%2 == 0:
                 print("Alright,let\'s discuss", smallname)
@@ -93,9 +107,11 @@ if (calc_similarity(text, clean(splitdescript)) >= 0.5):
             while ask<smallnumber:
                 #print(ask, "\n")
 
-                if(line[index][6:7].isnumeric()==True):
-                    value = int(line[index][6:7])
+                if(line[index][0:1].isnumeric()==True):
+                    value = int(line[index][0:1])
                     attention=True
+
+
                 txt = input("Is the patient experiencing: "+line[index])
                 ask = ask+1
                 index+=1
@@ -125,5 +141,6 @@ if (calc_similarity(text, clean(splitdescript)) >= 0.5):
                 print ("The patient has", smallname, "\n", "Here is the", smalldes, "\n", "This disorder is part of", bigname, "Here is the ", bigdescript)
 
         i+=1
+
 else:
     print("The patient most likely does not have a neurodevelopmental disorder.")
