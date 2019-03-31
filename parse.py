@@ -2,11 +2,11 @@
 
 # def keywords():
 
-import re
 import string
 import nltk
+import numpy as np
 from nltk.corpus import stopwords
-nltk.download("stopwords")
+from nltk.stem import WordNetLemmatizer
 
 # #getting the user paragraph
 # user_paragraph = input("Hi! Welcome to Psychology Assistant. Please type a paragraph to let us know how you are feeling. Be as specific as you can!\n\n")
@@ -18,31 +18,16 @@ user_paragraph = "me sad. lonely, need friends."
 all_words = user_paragraph.split()
 
 #cleaning the input
-stop_words = stopwords.words("english")
+stop_words = stopwords.words('english')
 exclude = set(string.punctuation)
+lemma = WordNetLemmatizer()
 
-i=0
-while (i < len(all_words)):
-	if all_words[i] in stop_words:
-		all_words.remove(all_words[i])
-	else:
-		i=i+1
+def clean(array):
+   stop_free = " ".join([i for i in array if i not in stop_words])
+   punc_free = ''.join(ch for ch in stop_free if ch not in exclude)
+   normalized = " ".join(lemma.lemmatize(word) for word in punc_free.split())
+   return normalized.split(" ")
 
-for word in all_words:
-	for ch in exclude:
-		word = word.replace("", ch)
+text = clean(all_words)
 
-# text = [point[1] for point in all_words]
-# stop_words = stopwords.words("english")
-# exclude = set(string.punctuation)
-
-# def clean(doc):
-# 	stop_free = " ".join([i for i in doc.lower().split() if i not in stop_words])
-# 	punc_free = ''.join(ch for ch in stop_free if ch not in exclude)
-
-# text = np.array([clean(point) for point in text])
-
-
-
-
-print(all_words)
+print(text)
